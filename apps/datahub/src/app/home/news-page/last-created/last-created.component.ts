@@ -1,18 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { RouterFacade } from '@geonetwork-ui/feature/router'
 import { FIELDS_BRIEF, SearchFacade } from '@geonetwork-ui/feature/search'
-import { CatalogRecord } from '@geonetwork-ui/common/domain/model/record'
 
 @Component({
   selector: 'datahub-last-created',
   templateUrl: './last-created.component.html',
   styleUrls: ['./last-created.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LastCreatedComponent implements OnInit {
   constructor(
-    private searchFacade: SearchFacade,
-    private routerFacade: RouterFacade
+    private searchFacade: SearchFacade
   ) { }
 
   ngOnInit() {
@@ -23,15 +20,12 @@ export class LastCreatedComponent implements OnInit {
       .setResultsLayout('FEED')
       .setConfigFilters({
         'resourceType': {
-          'service': false,
-          'map': false,
-          'map/static': false,
-          'mapDigital': false,
+          'service': true,
+          'map': true,
+          // 'map/static': false,
+          // 'mapDigital': false,
         }
       })
   }
 
-  onMetadataSelection(metadata: CatalogRecord): void {
-    this.routerFacade.goToMetadata(metadata)
-  }
 }

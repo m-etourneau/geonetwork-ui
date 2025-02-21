@@ -1,4 +1,72 @@
 <gn-ui-results-list-container
-  (mdSelect)="onMetadataSelection($event)"
-  showMore="button"
 ></gn-ui-results-list-container>
+
+<!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    <h3 
+      class="text-xl font-title text-white bg-[#234E91] leading-7 p-3 mb-3 text-center w-full cursor-pointer hover:bg-[#1C3E75] transition"
+      (click)="onMostRecentClick()"
+    >
+      Les plus récentes
+    </h3>
+    <div class="grid grid-cols-2 gap-4">
+      <div *ngFor="let record of records$ | async" class="border rounded-lg p-12">
+        <img 
+          *ngIf="record" 
+          [src]="record.overviews?.[0]?.url"
+          class="w-full h-[185px] object-contain"
+          alt="Metadata Image" 
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="md:border-l md:pl-6">
+    <h3 
+      class="text-xl font-title text-white bg-[#234E91] leading-7 p-3 mb-3 text-center w-full cursor-pointer hover:bg-[#1C3E75] transition"
+      (click)="onMapsClick()"
+    >
+      Cartes à la une
+    </h3>
+    <gn-ui-results-list-container
+      (mdSelect)="onMetadataSelection($event)"
+      showMore="button"
+    ></gn-ui-results-list-container>
+  </div>
+</div> -->
+
+
+<!-- <div class="grid grid-cols-3 gap-4">
+  <div *ngFor="let record of records$ | async" class="border rounded-lg p-12">
+    <img 
+      *ngIf="showOverlay" 
+      [src]="record.overviews?.[0]?.url"
+      class="block h-[185px] mb-5"
+      alt="Metadata Image" 
+    />
+  </div> -->
+
+
+  <!-- <div class="grid grid-cols-3 gap-4">
+    <div *ngFor="let record of records$ | async" class="border rounded-lg p-2">
+      <gn-ui-image-overlay-preview
+      *ngIf="record.href"
+      [src]="record.href"
+      class="w-full h-auto rounded-md shadow-lg"
+      alt="Metadata Image"
+    ></gn-ui-image-overlay-preview>
+    </div>
+  </div> -->
+
+
+
+  <!-- <div class="grid grid-cols-3 gap-4">
+  <div *ngFor="let record of records$ | async" class="border rounded-lg p-12">
+    <gn-ui-image-overlay-preview
+      class="block h-[185px] mb-5"
+      [imageUrl]="record.overviews?.[0]?.url"
+      (isPlaceholderShown)="showOverlay = !$event"
+      *ngIf="showOverlay"
+    ></gn-ui-image-overlay-preview>
+  </div>
+</div> -->

@@ -63,6 +63,8 @@ import { HomeHeaderComponent } from './home/home-header/home-header.component'
 import { HomePageComponent } from './home/home-page/home-page.component'
 import { KeyFiguresComponent } from './home/news-page/key-figures/key-figures.component'
 import { LastCreatedComponent } from './home/news-page/last-created/last-created.component'
+import { MostDownloadedComponent } from './home/news-page/most-downloaded/most-downloaded.component'
+import { MostRecentComponent } from './home/news-page/most-recent/most-recent.component'
 import { NewsPageComponent } from './home/news-page/news-page.component'
 import { OrganisationsPageComponent } from './home/organisations-page/organisations-page.component'
 import { SearchPageComponent } from './home/search/search-page/search-page.component'
@@ -103,6 +105,10 @@ import {
 } from '@ng-icons/material-icons/outline'
 import { NgIconsModule, provideNgIconsConfig } from '@ng-icons/core'
 import { MAX_FEATURE_COUNT } from './record/record-data-preview/record-data-preview.component'
+import { FeatureMapModule, MapStateContainerComponent } from '@geonetwork-ui/feature/map'
+import { MapsPageComponent } from './home/maps-page/maps-page.component'
+import { MapsRecentPageComponent } from './home/maps-recent-page/maps-recent-page.component'
+import { MapsDownloadedPageComponent } from './home/maps-downloaded-page/maps-downloaded-page.component'
 
 export const metaReducers: MetaReducer[] = !environment.production ? [] : []
 
@@ -120,7 +126,12 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     SearchPageComponent,
     LastCreatedComponent,
     KeyFiguresComponent,
+    MostDownloadedComponent,
+    MostRecentComponent,
     NavigationMenuComponent,
+    MapsPageComponent,
+    MapsRecentPageComponent,
+    MapsDownloadedPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -176,6 +187,8 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     }),
     OrganisationsComponent,
     LanguageSwitcherComponent,
+    FeatureMapModule,
+    MapStateContainerComponent,
   ],
   providers: [
     provideNgIconsConfig({
@@ -269,6 +282,7 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
       provide: EXTERNAL_VIEWER_OPEN_NEW_TAB,
       useFactory: () => getOptionalMapConfig()?.EXTERNAL_VIEWER_OPEN_NEW_TAB,
     },
+    // provideRepositoryUrl('https://hdf-dev.geofit.fr/geonetwork/srv/api'),
   ],
   bootstrap: [AppComponent],
 })

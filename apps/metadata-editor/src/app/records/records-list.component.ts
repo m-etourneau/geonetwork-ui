@@ -47,7 +47,10 @@ export class RecordsListComponent implements OnInit, Paginable {
   ) {}
 
   ngOnInit(): void {
-    this.searchFacade.setConfigRequestFields(allSearchFields)
+    // this.searchFacade.setConfigRequestFields(allSearchFields)
+    this.searchFacade.setConfigRequestFields([
+      'resourceTitleObject'
+    ])
     this.searchFacade.setPageSize(15)
 
     this.searchFacade.currentPage$.subscribe((page) => {

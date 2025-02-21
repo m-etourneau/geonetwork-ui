@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { catchError, startWith } from 'rxjs/operators'
 import { RecordsService } from '@geonetwork-ui/feature/catalog'
 import { ROUTER_ROUTE_SEARCH } from '@geonetwork-ui/feature/router'
@@ -28,7 +28,7 @@ export class KeyFiguresComponent {
 
   constructor(
     private catalogRecords: RecordsService,
-    private catalogOrgs: OrganizationsServiceInterface
+    private catalogOrgs: OrganizationsServiceInterface,
   ) {
     const organisations = this.catalogOrgs.getOrganisations()
     this.orgsCount$ = this.catalogOrgs.organisationsCount$.pipe(startWith('-'))

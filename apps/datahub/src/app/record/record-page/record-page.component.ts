@@ -32,6 +32,8 @@ export class RecordPageComponent implements OnDestroy {
     const cfg: MetadataQualityConfig =
       getMetadataQualityConfig() || ({} as MetadataQualityConfig)
     this.metadataQualityDisplay = cfg.ENABLED
+    console.log("metadataQualityDisplay: ", this.metadataQualityDisplay);
+    
   }
   ngOnDestroy() {
     document.documentElement.classList.remove('record-page-active')

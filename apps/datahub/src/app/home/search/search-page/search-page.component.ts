@@ -27,7 +27,7 @@ export class SearchPageComponent implements OnInit {
     this.searchFacade.setConfigFilters({
       'resourceType': {
         'service': false,
-        'map': false,
+        'map': true,
         'map/static': false,
         'mapDigital': false,
       }

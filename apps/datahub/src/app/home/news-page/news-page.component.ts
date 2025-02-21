@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { getGlobalConfig } from '@geonetwork-ui/util/app-config'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'datahub-news-page',
@@ -8,7 +8,18 @@ import { getGlobalConfig } from '@geonetwork-ui/util/app-config'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsPageComponent {
-  getContactMail(): string {
-    return getGlobalConfig().CONTACT_EMAIL
+
+  constructor(private router: Router) {}
+
+  onMostRecentClick():void{
+    this.router.navigate(['/maps-recent']);
+  }
+
+  onMapsClick():void{
+    this.router.navigate(['/maps']);
+  }
+
+  onMostDownloadedClick():void{
+    this.router.navigate(['/maps-downloaded']);
   }
 }
