@@ -109,6 +109,13 @@ import { FeatureMapModule, MapStateContainerComponent } from '@geonetwork-ui/fea
 import { MapsPageComponent } from './home/maps-page/maps-page.component'
 import { MapsRecentPageComponent } from './home/maps-recent-page/maps-recent-page.component'
 import { MapsDownloadedPageComponent } from './home/maps-downloaded-page/maps-downloaded-page.component'
+import { FeatureEditorModule } from '@geonetwork-ui/feature/editor'
+import { RecordFormComponent } from '@geonetwork-ui/feature/editor'
+import { ImportRecordComponent } from '@geonetwork-ui/feature/editor'
+import { FormFieldComponent } from 'libs/feature/editor/src/lib/components/record-form/form-field'
+
+import { FormFieldDateComponent } from 'libs/feature/editor/src/lib/components/record-form/form-field'
+
 
 export const metaReducers: MetaReducer[] = !environment.production ? [] : []
 
@@ -131,7 +138,7 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     NavigationMenuComponent,
     MapsPageComponent,
     MapsRecentPageComponent,
-    MapsDownloadedPageComponent,
+    MapsDownloadedPageComponent, 
   ],
   imports: [
     BrowserModule,
@@ -189,6 +196,9 @@ export const metaReducers: MetaReducer[] = !environment.production ? [] : []
     LanguageSwitcherComponent,
     FeatureMapModule,
     MapStateContainerComponent,
+    FeatureEditorModule,
+    RecordFormComponent,
+    FormFieldDateComponent,
   ],
   providers: [
     provideNgIconsConfig({

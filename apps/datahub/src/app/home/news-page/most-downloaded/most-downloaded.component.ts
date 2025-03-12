@@ -19,13 +19,21 @@ export class MostDownloadedComponent implements OnInit {
     this.searchFacade
       .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'changeDate'])
       .setPageSize(10)
-      .setSortBy(['desc', 'popularity'])
+      .setSortBy(['desc', 'dateStamp'])
       .setResultsLayout('FEED')
       .setConfigFilters({
+        'th_otherKeywords-.default': {
+          SPRC: true
+        },
         'resourceType': {
-          'map': true
-        }
+          // 'map': true
+        },
+       
       })
+      
+      // this.searchFacade.results$.subscribe(results => {
+      //   console.log('Résultats du composant most down:', results);
+      // });
       
       this.records$ = this.searchFacade.results$; 
       // console.log("records: ",this.records$ );

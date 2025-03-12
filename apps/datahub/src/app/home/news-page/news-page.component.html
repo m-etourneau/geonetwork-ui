@@ -35,7 +35,9 @@
         >
           Les plus récentes
         </h3>
-        <gn-ui-most-recent></gn-ui-most-recent>
+        <div gnUiSearchStateContainer="most-recent">
+          <gn-ui-most-recent></gn-ui-most-recent>
+        </div>
       </div>
 
     
@@ -46,7 +48,9 @@
         >
           Cartes à la une
         </h3>
-        <datahub-last-created></datahub-last-created>
+        <div gnUiSearchStateContainer="last-created">
+          <datahub-last-created></datahub-last-created>
+        </div>
       </div>
 
      
@@ -57,8 +61,10 @@
         >
           Les plus téléchargées
         </h3>
-        <datahub-key-figures></datahub-key-figures>
-        <gn-ui-most-downloaded></gn-ui-most-downloaded>
+        <div gnUiSearchStateContainer="most-downloaded">
+          <datahub-key-figures></datahub-key-figures>
+          <gn-ui-most-downloaded></gn-ui-most-downloaded>
+        </div>   
       </div>
     </div>
   </div>

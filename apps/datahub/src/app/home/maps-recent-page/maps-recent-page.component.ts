@@ -19,9 +19,9 @@ export class MapsRecentPageComponent implements OnInit {
 
   ngOnInit() {
     this.searchFacade
-      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'changeDate'])
+      .setConfigRequestFields([...FIELDS_BRIEF, 'createDate', 'changeDate', 'dateStamp'])
       .setPageSize(10)
-      .setSortBy(['desc', 'createDate'])
+      .setSortBy(['desc', 'dateStamp'])
       .setResultsLayout('FEED')
       .setConfigFilters({
         'resourceType': {

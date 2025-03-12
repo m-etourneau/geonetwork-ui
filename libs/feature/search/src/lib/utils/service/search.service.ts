@@ -48,3 +48,10 @@ export class SearchService implements SearchServiceI {
     this.facade.resetSearch()
   }
 }
+
+export function resetSearchFacade(searchFacade: SearchFacade) {
+  searchFacade.setConfigRequestFields([]);
+  searchFacade.setPageSize(10); 
+  searchFacade.setSortBy([]);
+  searchFacade.setConfigFilters({});
+}
