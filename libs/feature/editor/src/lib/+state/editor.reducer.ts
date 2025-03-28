@@ -110,6 +110,10 @@ const reducer = createReducer(
   on(EditorActions.hasRecordChangedSinceDraftSuccess, (state, { changes }) => ({
     ...state,
     hasRecordChanged: changes,
+  })),
+  on(EditorActions.prefillRecord, (state, { record }) => ({
+    ...state,
+    record: record,
   }))
 )
 

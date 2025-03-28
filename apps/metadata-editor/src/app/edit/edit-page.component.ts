@@ -63,7 +63,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private facade: EditorFacade,
+    public  facade: EditorFacade,
     private notificationsService: NotificationsService,
     private translateService: TranslateService,
     private router: Router
@@ -73,11 +73,38 @@ export class EditPageComponent implements OnInit, OnDestroy {
     const [currentRecord, currentRecordSource, currentRecordAlreadySaved] =
       this.route.snapshot.data['record']
 
-    this.facade.openRecord(
-      currentRecord,
-      currentRecordSource,
-      currentRecordAlreadySaved
-    )
+    // this.facade.openRecord(
+    //   currentRecord,
+    //   currentRecordSource,
+    //   currentRecordAlreadySaved
+    // )
+
+    if (this.route.snapshot.routeConfig?.path.includes('create')) {
+      this.facade.record$.pipe(take(1)).subscribe((record) => {
+        // console.log('Record mis à jour :', record);
+        if (record === null){
+          this.facade.openRecord(
+            currentRecord,
+            currentRecordSource,
+            currentRecordAlreadySaved
+          )
+        }else{
+          this.facade.openRecord(
+            record, 
+            null, 
+            false
+          );
+        }
+        
+      });
+    }else{
+      // const [currentRecord, currentRecordSource, currentRecordAlreadySaved] = this.route.snapshot.data['record'] 
+      this.facade.openRecord(
+          currentRecord,
+          currentRecordSource,
+          currentRecordAlreadySaved
+      )
+    }
 
     this.subscription.add(
       this.facade.saveError$.subscribe((error) => {

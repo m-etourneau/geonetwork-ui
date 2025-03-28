@@ -51,3 +51,8 @@ export const hasRecordChangedSinceDraftSuccess = createAction(
   '[Editor] Has Record Changed Since Draft Success',
   props<{ changes: { user: string; date: Date } }>()
 )
+
+export const prefillRecord = createAction(
+  '[Editor] Prefill Record',
+  props<{ record: CatalogRecord }>()
+);

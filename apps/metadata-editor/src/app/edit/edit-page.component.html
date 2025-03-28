@@ -26,7 +26,8 @@
           </div>
         </div>
         <md-editor-page-selector></md-editor-page-selector>
-        <gn-ui-record-form></gn-ui-record-form>
+        <!-- <gn-ui-record-form></gn-ui-record-form> -->
+        <gn-ui-record-form *ngIf="facade.record$ | async as record" [record]="record"></gn-ui-record-form>
         <div
           data-test="previousNextPageButtons"
           class="mt-auto flex flex-row justify-between"

@@ -212,6 +212,7 @@ export function xmlToString(
   indentationLevel = 0
 ) {
   const encodeEntities = (text: string) => {
+    if (!text) return ''
     return text
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
@@ -223,6 +224,7 @@ export function xmlToString(
     )}`
   if (el instanceof XmlText) {
     const text = el.text
+    if (text === null) return ''
     const isEmpty = !text || text.replace(/^\s+|\s+$/g, '') === ''
     if (isEmpty) return ''
     return encodeEntities(text)

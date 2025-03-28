@@ -26,6 +26,9 @@
   >
     <div class="grow"></div>
     <gn-ui-button
+      (buttonClick)="importDataRedmine()"
+    >Import Redmine</gn-ui-button>
+    <gn-ui-button
       cdkOverlayOrigin
       #importRecordButton
       (buttonClick)="duplicateExternalRecord()"

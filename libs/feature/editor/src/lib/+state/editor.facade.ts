@@ -70,4 +70,9 @@ export class EditorFacade {
   checkHasRecordChanged(record: CatalogRecord) {
     this.store.dispatch(EditorActions.hasRecordChangedSinceDraft({ record }))
   }
+
+  prefillRecordData(issue: any) {
+    this.store.dispatch(EditorActions.prefillRecord({ record: issue }));
+  }
+  
 }

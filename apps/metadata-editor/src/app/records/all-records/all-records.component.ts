@@ -32,6 +32,9 @@ import {
   iconoirNavArrowUp,
   iconoirPagePlus,
 } from '@ng-icons/iconoir'
+import { RedmineService } from '../../redmine.service'
+import { EditorFacade } from '@geonetwork-ui/feature/editor'
+import { DatasetRecord } from '@geonetwork-ui/common/domain/model/record'
 
 @Component({
   selector: 'md-editor-all-records',
@@ -78,7 +81,9 @@ export class AllRecordsComponent implements OnInit, OnDestroy {
     public searchService: SearchService,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private redmineService: RedmineService,
+    private editorFacade: EditorFacade
   ) {}
 
   ngOnInit() {
@@ -148,4 +153,102 @@ export class AllRecordsComponent implements OnInit, OnDestroy {
       this.cdr.markForCheck()
     }
   }
+
+  importDataRedmine() {
+    this.redmineService.getIssueData().subscribe((data: any) => {
+      if (data.issue) {
+        // console.log('DATA ISSUEEEE: ',data.issue);
+        const transformedIssue = this.mapIssueToDatasetRecord(data.issue);
+        this.editorFacade.prefillRecordData(transformedIssue);
+        // console.log('Données assignées à prefillRecordData');
+        this.router.navigate(['/create']).catch((err) => console.error(err));
+      }
+    });
+    
+  }
+
+  private mapIssueToDatasetRecord(issue: any): DatasetRecord {
+    const keywordsField = issue.custom_fields.find((field: any) => field.name === "Mots clés");
+    const keywordsValue = keywordsField && keywordsField.value ?  keywordsField.value : '';
+
+    return {
+      title: issue.subject || 'Titre par défaut',
+      uniqueIdentifier: `my-dataset-record-${issue.id}`,
+      ownerOrganization: {
+        name: issue.author.name || 'MyOrganization',
+        translations: {}
+      },
+      contactsForResource: [],
+      contacts: [
+        {
+          email: 'bob@org.net',
+          role: 'author',
+          organization: {
+            name: issue.author.name || 'MyOrganization',
+            translations: {}
+          },
+          firstName: 'Bob',
+          lastName: 'TheGreat',
+          position: 'developer',
+        }
+      ],
+      kind: 'dataset',
+      topics: ['testData'],
+      keywords: [
+        {
+          thesaurus: { id: 'geonetwork.thesaurus.local' },
+          type: 'other',
+          label: keywordsValue,
+        },
+        {
+          thesaurus: { id: 'geonetwork.thesaurus.local' },
+          type: 'other',
+          label: 'test',
+        },
+        {
+          thesaurus: { id: 'geonetwork.thesaurus.local' },
+          type: 'other',
+          label: '_another_keyword_',
+        },
+      ],
+      licenses: [],
+      legalConstraints: [],
+      securityConstraints: [],
+      otherConstraints: [],
+      overviews: [],
+      status: 'ongoing', // issue.status.name
+      recordCreated: issue.created_on,
+      recordUpdated: issue.updated_on,
+      resourceCreated: issue.created_on,
+      resourceUpdated: issue.updated_on,
+      abstract: issue.description || 'Abstract non fournie',
+      lineage: 'This record was added from redmine hdf',
+      spatialRepresentation: 'grid',
+      otherLanguages: [],
+      defaultLanguage: 'en',
+      onlineResources: [
+        {
+          type: 'download',
+          url: new URL(
+            'http://geo.compiegnois.fr/documents/metiers/urba/docurba/60036_PLU_20220329.zip'
+          ),
+          name: 'Télécharger les données géographiques et les pièces écrites disponibles', // name or desc?
+          description: 'Téléchargement du fichier',
+          mimeType: 'x-gis/x-shapefile',
+        },
+        {
+          type: 'service',
+          url: new URL('https://my-org.net/ogc'),
+          accessServiceProtocol: 'ogcFeatures',
+          name: 'ogcFeaturesSecondRecord',
+          description: 'This OGC service is the second part of the download',
+          identifierInService: 'my:featuretype',
+        },
+      ],
+      spatialExtents: [],
+      temporalExtents: [],
+      translations: {},
+    };
+  }
+
 }

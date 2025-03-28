@@ -44,7 +44,7 @@
                 [model]="field.config.model!"
                 [modelSpecifier]="field.config.modelSpecifier!"
                 [config]="field.config.formFieldConfig"
-                [value]="field.value"
+                [value]="(facade.record$ | async)?.[field.config.model!] || field.value"
                 [componentName]="field.config.componentName"
                 (valueChange)="
                   handleFieldValueChange(field.config.model!, $event)
